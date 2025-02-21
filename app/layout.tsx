@@ -1,6 +1,5 @@
 import HeaderAuth from "@/components/header-auth";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Geist } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import "./globals.css";
@@ -17,8 +16,10 @@ export const metadata = {
   description: "4x space strategy game",
 };
 
-const geistSans = Geist({
-  display: "swap",
+const fontFamily = Roboto({
+  style: "normal",
+  weight: "400",
+  display: "auto",
   subsets: ["latin"],
 });
 
@@ -28,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={geistSans.className} suppressHydrationWarning>
+    <html lang="en" className={fontFamily.className} suppressHydrationWarning>
       <body className="bg-background text-foreground">
         <ThemeProvider
           attribute="class"
@@ -37,7 +38,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex flex-col  bg-gray-900 text-white font-sans">
-            <header className="p-4 bg-gray-900/10 backdrop-blur-md sticky top-0 z-50">
+            <header className="p-4 bg-gray-700/10 backdrop-blur-md fixed w-full top-0 z-50">
               <div className="container mx-auto flex justify-between items-center">
                 <Link href="/" className="text-2xl font-bold flex items-center">
                   <Star className="mr-2 text-green-500" />
