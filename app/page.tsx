@@ -6,6 +6,7 @@ import { Globe, Rocket, Star, Users } from "lucide-react";
 import Image from "next/image";
 import HeroImage from "@/components/assets/hero-image.jpeg";
 import Link from "next/link";
+import Particles from "@/components/particles";
 
 export default async function Home() {
   return (
@@ -15,13 +16,32 @@ export default async function Home() {
           <Image
             src={HeroImage}
             alt="Space background with galaxies and nebulae"
-            layout="fill"
-            objectFit="cover"
+            fill
+            // layout="fill"
+            // objectFit="cover"
             quality={100}
             priority
             className="absolute inset-0"
           />
-          <div className="absolute inset-0 bg-gray-900/70"></div>
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+            }}
+          >
+            <Particles
+              particleColors={["#ffffff", "#ffffff"]}
+              particleCount={100}
+              particleSpread={10}
+              speed={0.1}
+              particleBaseSize={50}
+              moveParticlesOnHover={true}
+              alphaParticles={false}
+              disableRotation={false}
+            />
+          </div>
+          <div className="absolute inset-0 bg-gray-900/50"></div>
           <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white">
               Conquer the Galaxy in Astral Ascendency
