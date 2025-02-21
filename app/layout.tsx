@@ -1,12 +1,11 @@
-import DeployButton from "@/components/deploy-button";
-import { EnvVarWarning } from "@/components/env-var-warning";
 import HeaderAuth from "@/components/header-auth";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import "./globals.css";
+import { Menu, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -14,8 +13,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "Astral Ascendency",
+  description: "4x space strategy game",
 };
 
 const geistSans = Geist({
@@ -37,39 +36,68 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="min-h-screen flex flex-col items-center">
-            <div className="flex-1 w-full flex flex-col gap-20 items-center">
-              <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-                  <div className="flex gap-5 items-center font-semibold">
-                    <Link href={"/"}>Next.js Supabase Starter</Link>
-                    <div className="flex items-center gap-2">
-                      <DeployButton />
-                    </div>
-                  </div>
-                  {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
-                </div>
-              </nav>
-              <div className="flex flex-col gap-20 max-w-5xl p-5">
-                {children}
+          <div className="flex flex-col  bg-gray-900 text-white font-sans">
+            <header className="p-4 bg-gray-900/10 backdrop-blur-md sticky top-0 z-50">
+              <div className="container mx-auto flex justify-between items-center">
+                <Link href="/" className="text-2xl font-bold flex items-center">
+                  <Star className="mr-2 text-green-500" />
+                  <span className="text-white">Astral Ascendency</span>
+                </Link>
+                <nav className="hidden md:flex space-x-6">
+                  <HeaderAuth />
+                  {/* <ThemeSwitcher /> */}
+                </nav>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden text-white"
+                >
+                  <Menu className="h-6 w-6" />
+                </Button>
               </div>
+            </header>
+            {children}
 
-              <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-                <p>
-                  Powered by{" "}
-                  <a
-                    href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-                    target="_blank"
-                    className="font-bold hover:underline"
-                    rel="noreferrer"
-                  >
-                    Supabase
-                  </a>
-                </p>
-                <ThemeSwitcher />
-              </footer>
-            </div>
-          </main>
+            <footer className="bg-gray-900 text-gray-300 py-8">
+              <div className="container mx-auto px-4">
+                <div className="flex flex-col md:flex-row justify-between items-center">
+                  <div className="mb-4 md:mb-0">
+                    <Link
+                      href="/"
+                      className="text-2xl font-bold flex items-center"
+                    >
+                      <Star className="mr-2 text-green-500" />
+                      <span className="text-white">Astral Ascendency</span>
+                    </Link>
+                  </div>
+                  <nav className="flex flex-wrap justify-center gap-4">
+                    <Link
+                      href="#"
+                      className="hover:text-white transition-colors"
+                    >
+                      Privacy Policy
+                    </Link>
+                    <Link
+                      href="#"
+                      className="hover:text-white transition-colors"
+                    >
+                      Terms of Service
+                    </Link>
+                    <Link
+                      href="#"
+                      className="hover:text-white transition-colors"
+                    >
+                      Contact
+                    </Link>
+                  </nav>
+                </div>
+                <div className="mt-8 text-center text-sm">
+                  © {new Date().getFullYear()} Stellar Ascendency. All rights
+                  reserved.
+                </div>
+              </div>
+            </footer>
+          </div>
         </ThemeProvider>
       </body>
     </html>
